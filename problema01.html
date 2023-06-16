@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperaturas</title>
+</head>
+<body>
+    <h1>Programa Aviso sobre Temperaturas</h1>
+
+    <p>Temperatura:
+        <input type="number" name="inTemp" id="inTemp"/>
+    </p>
+
+    <p>
+        <input type="button" value="Ver Aviso" name="btAviso" id="btAviso"/>
+    </p>
+
+    <h3 id="outAviso"></h3>
+
+    <script>
+    // Problema: Aviso sobre temperaturas
+    /*
+    Faça um script que peça para o usuário informar o valor de uma temperatura em graus Celsius. 
+    - Caso a temperatura esteja abaixo de 100 graus Celsius, o programa deverá apresentar a mensagem "Está muito baixa!";
+    - Caso a temperatura esteja até 200 graus Celsius (inclusive), deverá apresentar a mensagem "Está baixa!";
+    - Se estiver acima de 200 graus Celsius e inferior a 500 graus Celsius, deverá apresentar a mensagem "Está normal!";
+    - Contudo, caso esteja acima de 500 graus Celsius, deverá apresentar a mensagem "Está muito alta!".
+    */
+
+    // Entrada
+    function avisoTemp() {
+        let inTemp = document.getElementById("inTemp").value.replace("," , ".");
+    // Processamento
+    if (inTemp < 100) {
+        document.getElementById("outAviso").textContent = `Está muito baixa!`;
+    }
+
+    else if (inTemp >= 100 && inTemp <= 200) {
+        document.getElementById("outAviso").textContent = `Está baixa!`;
+    }
+
+    else if (inTemp > 200 && inTemp <= 500) {
+        document.getElementById("outAviso").textContent = `Está normal!`;
+    }
+
+    else {
+        document.getElementById("outAviso").textContent = `Está muito alta!`;
+    }
+
+    }
+    // Saída
+    let btAviso = document.getElementById("btAviso");
+    btAviso.addEventListener("click", avisoTemp);
+    </script>
+</body>
+</html>
