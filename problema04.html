@@ -10,15 +10,15 @@
     <h1>Programa Financiamento</h1>
 
     <p>Valor do Imóvel:
-        <input type="number" name="inImovel" id="inMovel"/>
+        <input type="text" name="inImovel" id="inImovel"/>
     </p>
 
     <p>Anos Financiamento:
-        <input type="number" name="inAnos" id="inAnos"/>
+        <input type="text" name="inAnos" id="inAnos"/>
     </p>
 
     <p>Salário do Comprador:
-        <input type="number" name="inSalario" id="inSalario"/>
+        <input type="text" name="inSalario" id="inSalario"/>
     </p>
 
     <p>
@@ -40,9 +40,9 @@
     
         // Entrada
         function verificarFinanciamento() {
-        let inImovel = document.getElementById("inImovel").value.replace("." , ",")*1;
-        let inAnos = document.getElementById("inAnos").value*1;
-        let inSalario = document.getElementById("inSalario").value.replace("." , ",")*1;
+        let inImovel = Number(document.getElementById("inImovel").value.replace("." , ","));
+        let inAnos = Number(document.getElementById("inAnos").value);
+        let inSalario = Number(document.getElementById("inSalario").value.replace("." , ","));
         // Processamento
         let salario30 = inSalario * 0.3
         let valorPrestação = inImovel / (inAnos * 12);
@@ -52,7 +52,7 @@
             document.getElementById("outValorPrestacao").textContent = `Valor da Parcela: R$${valorPrestação.toFixed(2).replace("." , ",")}`
         }
 
-        else if (salario30 < valorPrestação) {
+        else {
             document.getElementById("outVerificacao").textContent = `Financiamento: Negado`
         }
         }

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custo do dia de trabalho</title>
+</head>
+<body>
+    <h1>Programa Custo do dia de trabalho</h1>
+
+    <p>Informe seu cargo, se é motorista ou cobrador</p>
+
+    <p>Cargo:
+        <input type="text" name="inCargo" id="inCargo"/>
+    </p>
+
+    <p>Viagens Realizadas:
+        <input type="number" name="inViagens" id="inViagens"/>
+    </p>
+
+    <p>
+        <input type="button" value="Ver Ganhos" name="btGanhos" id="btGanhos"/>
+    </p>
+
+    <h3 id="outGanhos"></h3>
+    <script>
+        // Problema: Custo do Dia de Trabalho
+        /*
+        Peça para o programa perguntar ao usuário quantas viagens foram realizadas por dia e também qual o cargo que ocupa.
+        
+        Considere que o valor da diária é de R$ 100,00 (100).
+        
+        - Se o usuário ocupar o cargo de "Motorista" e realizou até 10 viagens, haverá um adicional de 20% (20/100).
+        - Se o usuário ocupar o cargo de "Motorista" e realizou mais de 10 viagens, haverá um adicional de 35% (35/100).
+        - Contudo, se o cargo do usuário for "Cobrador" e realizou até 10 viagens, não haverá adicional.
+        - Se o usuário ocupar o cargo de "Cobrador" e realizou mais de 10 viagens, haverá um adicional de 10% (10/100).
+        
+        Apresente em tela o cargo do usuário e também o valor final recebido pelas viagens realizadas.
+        */
+    
+        // Entrada
+        function ganhosDia() {
+            let inCargo = document.getElementById("inCargo").value.toUpperCase();
+            let inViagens = document.getElementById("inViagens").value;
+            let adicionalDia;
+        // Processamento
+        if (inCargo === "MOTORISTA") {
+            if (inViagens <= 10) {
+                adicionalDia = 100 + (100 * 0.2);
+                document.getElementById("outGanhos").textContent = `Ganhos: R$100 
+                Adicional: R$${adicionalDia.toFixed(2).replace("." , ",")}`;
+            }
+
+            else {
+                adicionalDia = 100 + (100 *0.35);
+                document.getElementById("outGanhos").textContent = `Ganhos: R$100 
+                Adicional: R$${adicionalDia.toFixed(2).replace("." , ",")}`;
+            }
+        }
+        else if (inCargo === "COBRADOR") {
+            if (inViagens <= 10) {
+                document.getElementById("outGanhos").textContent = `Ganhos: R$100 
+                Adicional: Sem adicional`
+            }
+
+            else {
+                adicionalDia = 100 + (100 * 0.1);
+                document.getElementById("outGanhos").textContent = `Ganhos: R$100 
+                Adicional: R$${adicionalDia.toFixed(2).replace("." , ",")}`
+            }
+        }
+
+        else {
+            document.getElementById("outGanhos").textContent = `Cargo Inválido! Por favor escreva somente MOTORISTA ou COBRADOR`;
+        }
+        }
+        // Saída
+        let btGanhos = document.getElementById("btGanhos");
+        btGanhos.addEventListener("click", ganhosDia);
+    </script>
+</body>
+</html>
