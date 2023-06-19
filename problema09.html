@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular Desconto</title>
+</head>
+<body>
+    <h1>Programa Calcular Desconto</h1>
+
+    <p>Preço PC
+        <input type="text" name="inPreco" id="inPreco"/>
+    </p>
+
+    <p>As formas de pagamento possíveis são: (B) Boleto, (D) Dinheiro, P (Pix) e V (Parcelado em x Vezes) </p>
+
+    <p> Boleto: 3% de desconto;
+        Dinheiro: 5% de desconto;
+        Pix: 10% de desconto;
+        Parcelado: Sem Desconto;
+    </p>
+
+    <p>Forma de Pagamento:
+        <input type="text" name="inFormaDePagamento" id="inFormaDePagamento"/>
+    </p>
+
+    <p>
+        <input type="button" value="Ver Preço Final" name="btPrecoFinal" id="btPrecoFinal"/>
+    </p>
+
+    <h3 id="outPrecoFinal"></h3>
+    <script>
+        // Problema: Calcular desconto na compra de Computador
+        /*
+        Peça para o vendedor informar o valor do computador que está vendendo e também informar a forma de pagamento que o Cliente procederá para a comopra do equipamento.
+    
+        - Se for via (B)Boleto, o cliente terá 3% (3/100) de desconto.
+        - Se for via (D)Dinheiro, o cliente terá 5% (5/100) de desconto.
+        - Se for via (P)PIX, o cliente terá 10% (10/100) de descconto.
+        
+        Calcule e apresente o preço final do computador de acordo com a Forma de Pagamento.
+        */
+    
+        // Entrada
+        function precoFinal() {
+        let inPreco = document.getElementById("inPreco").value.replace("," , ".")*1;
+        let inFormaDePagamento = document.getElementById("inFormaDePagamento").value.toUpperCase();
+        // Processamento
+        let boleto = inPreco - (inPreco * 0.03);
+        let dinheiro = inPreco - (inPreco * 0.05);
+        let pix = inPreco - (inPreco * 0.1);
+
+        if (inFormaDePagamento === "B" || inFormaDePagamento === "BOLETO") {
+            document.getElementById("outPrecoFinal").textContent = `Preço Final: R$${boleto.toFixed(2).replace("." , ",")}`
+        }
+
+        else if (inFormaDePagamento === "D" || inFormaDePagamento === "DINHEIRO") {
+            document.getElementById("outPrecoFinal").textContent = `Preço Final: R$${dinheiro.toFixed(2).replace("." , ",")}`
+        }
+
+        else if (inFormaDePagamento === "P" || inFormaDePagamento === "PIX") {
+            document.getElementById("outPrecoFinal").textContent = `Preço Final: R$${pix.toFixed(2).replace("." , ",")}`
+        }
+
+        else if (inFormaDePagamento === "V" || inFormaDePagamento === "PARCELADO") {
+            document.getElementById("outPrecoFinal").textContent = `Preço Final: R$${inPreco.toFixed(2).replace("." , ",")}`
+        }
+
+        else {
+            document.getElementById("outPrecoFinal").textContent = `Valor Inválido! Digite somente BOLETO, DINHEIRO, PIX OU PARCELADO`
+            inFormaDePagamento.focus();
+            return;
+        }
+        }
+        // Saída
+        let btPrecoFinal = document.getElementById("btPrecoFinal");
+        btPrecoFinal.addEventListener("click", precoFinal);
+    </script>
+</body>
+</html>

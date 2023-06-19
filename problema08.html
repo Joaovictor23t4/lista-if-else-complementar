@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carreira Docente</title>
+</head>
+<body>
+    <h1>Programa Carreira Docente</h1>
+
+    <p>Anos de Carreira:
+        <input type="text" name="inAnos" id="inAnos"/>
+    </p>
+
+    <p>Projetos de Pesquisa que já coordenou:
+        <input type="text" name="inPesquisa" id="inPesquisa"/>
+    </p>
+
+    <p>Projetos de Extensão que já orientou:
+        <input type="text" name="inExtensao" id="inExtensao"/>
+    </p>
+
+    <p>TCCs que já orientou:
+        <input type="text" name="inTccs" id="inTccs"/>
+    </p>
+
+    <p>
+        <input type="button" value="Ver classificação" name="btClassificacao" id="btClassificacao"/>
+    </p>
+
+    <h3 id="outPontos"></h3>
+    <h3 id="outClassificacao"></h3>
+    <script>
+        // Problema: Carreira Docente
+        /*
+        Peça para o Professor informar quantos anos de carreira possui. Peça também para que o Professor informe a quantidade de Projetos de Pesquisa que já coordenou. Também peça para que informe a quantidade de Projetos de Extensão que orientou. Por último, peça para informar a quantidade de TCCs que já orientou.
+    
+        - Considere que cada ano de carreira equivale 2.5 pontos;
+        - Considere que cada Projeto de Pesquisa equivale a 5 pontos;
+        - Considere que cada Projeto de Extensão equivale a 5 pontos;
+        - Considere que cada TCC equivale a 3 pontos.
+        
+        Como resultado do cálculo das pontuações, a classificação poderá ser:
+    
+        - Se o Professor possuir até 30 pontos (inclusive), será considerado "CONVIDADO";
+        - Se o Professor possuir até 50 pontos, será considerado "AGREGADO";
+        - Se o Professor possuir mais de 50 pontos, será considerado "TITULAR".
+        
+        Calcule os pontos e apresente a classificação do Professor.
+        */
+    
+        // Entrada
+        function pontosClassificacao() {
+            let inAnos = document.getElementById("inAnos").value*1;
+            let inPesquisa = document.getElementById("inPesquisa").value*1;
+            let inExtensao = document.getElementById("inExtensao").value*1;
+            let inTccs = document.getElementById("inTccs").value*1;
+        // Processamento
+        inAnos = inAnos * 2.5;
+        inPesquisa = inPesquisa * 5;
+        inExtensao = inExtensao * 5;
+        inTccs = inTccs * 3;
+
+        let soma = inAnos + inPesquisa + inExtensao + inTccs;
+
+        if (soma <= 30) {
+            document.getElementById("outPontos").textContent = `Acumulação dos Pontos: ${soma}`
+            document.getElementById("outClassificacao").textContent = `Classificação: Convidado`;
+        }
+
+        else if (soma > 30 && soma <= 50) {
+            document.getElementById("outPontos").textContent = `Acumulação dos Pontos: ${soma}`
+            document.getElementById("outClassificacao").textContent = `Classificação: Agregado`;
+        }
+
+        else {
+            document.getElementById("outPontos").textContent = `Acumulação dos Pontos: ${soma}`
+            document.getElementById("outClassificacao").textContent = `Classificação: Titular`;
+        }
+        }
+        // Saída
+        let btClassificacao = document.getElementById("btClassificacao");
+        btClassificacao.addEventListener("click", pontosClassificacao);
+    </script>
+</body>
+</html>

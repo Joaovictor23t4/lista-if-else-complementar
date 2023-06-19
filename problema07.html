@@ -60,12 +60,16 @@
             }
 
             else if (inTransporte === "TRANSPORTE") {
-                
+                adicional = inSalario + 150;
+
+                document.getElementById("outDesconto").textContent = `Desconto: R$${inSalario.toFixed(2).replace("." , ",")}`
+                document.getElementById("outAdicional").textContent = `Adicional: R$${adicional.toFixed(2).replace("." , ",")}`
             }
         }
         }
         // Saída
-    
+        let btNovoSalario = document.getElementById("btNovoSalario");
+        btNovoSalario.addEventListener("click", auxílio);
     </script>
 </body>
 </html>

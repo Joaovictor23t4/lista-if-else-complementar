@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destino Turístico</title>
+</head>
+<body>
+    <h1>Programa Destino Turístico</h1>
+
+    <p>Preço Transporte Aéreo (São Paulo):
+        <input type="text" name="inPrecoTransporteSp" id="inPrecoTransporteSp"/>
+    </p>
+
+    <p>Preço Transporte Aéreo (Rio de Janeiro):
+        <input type="text" name="inPrecoTransporteRj" id="inPrecoTransporteRj"/>
+    </p>
+
+    <p>Preço do Hotel São Paulo (Diária):
+        <input type="text" name="inPrecoHotelSp" id="inPrecoHotelSp"/>
+    </p>
+
+    <p>Preço do Hotel Rio de Janeiro (Diária):
+        <input type="text" name="inPrecoHotelRj" id="inPrecoHotelRj"/>
+    </p>
+
+    <p>Quantos Dias Pretende Ficar:
+        <input type="text" name="inQtosDias" id="inQtosDias"/>
+    </p>
+
+    <p>
+        <input type="button" value="Ver Destino" name="btDestino" id="btDestino"/>
+    </p>
+
+    <h3 id="outDestino"></h3>
+    <h3 id="outCusto"></h3>
+    <script>
+        // Problema: Destino turístico
+        /*
+        Peça para o usuário informar o preço do transporte aéreo para dois destinos de viagem (São Paulo, Rio de Janeiro).
+        
+        Peça também para informar o preço do hotel para os dois destinos (São Paulo, Rio de Janeiro) e quantos dias pretende ficar no destino.
+        
+        Calcule o custo final para cada um e apresente a melhor decisão, considerando que o destino pretendido será o com custo final mais baixo. 
+        
+        Apresente o destino final e o custo final da viagem para o destino.
+        */
+    
+        // Entrada
+        function escolherDestino() {
+        let inPrecoTransporteRj = document.getElementById("inPrecoTransporteRj").value.replace("," , ".")*1;
+        let inPrecoHotelRj = document.getElementById("inPrecoHotelRj").value.replace("," , ".")*1;
+        let inPrecoTransporteSp = document.getElementById("inPrecoTransporteSp").value.replace("," , ".")*1;
+        let inPrecoHotelSp = document.getElementById("inPrecoHotelSp").value.replace("," , ".")*1;
+        let inQtosDias = document.getElementById("inQtosDias").value*1;
+        // Processamento
+        inPrecoHotelRj = inPrecoHotelRj * inQtosDias;
+        inPrecoHotelSp = inPrecoHotelSp * inQtosDias;
+
+        let precoRioDeJaneiro = inPrecoTransporteRj + inPrecoHotelRj;
+        let precoSaoPaulo = inPrecoTransporteSp + inPrecoHotelSp;
+
+        if (precoRioDeJaneiro < precoSaoPaulo) {
+            document.getElementById("outDestino").textContent = `Destino: Rio de Janeiro`;
+            document.getElementById("outCusto").textContent = `Custo Total: R$${precoRioDeJaneiro.toFixed(2).replace("." , ",")}`;
+        }
+
+        else {
+            document.getElementById("outDestino").textContent = `Destino: São Paulo`;
+            document.getElementById("outCusto").textContent = `Custo Total: R$${precoSaoPaulo.toFixed(2).replace("." , ",")}`
+        }
+    }
+        // Saída
+        let btDestino = document.getElementById("btDestino");
+        btDestino.addEventListener("click", escolherDestino);
+    </script>
+</body>
+</html>
